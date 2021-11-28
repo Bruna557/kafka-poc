@@ -34,6 +34,13 @@ $ python
 Connect to ksql-cli:
 
 ```bash
-$ docker exec -it ksql-cli bash
-$ ksql http://ksql-server:8088
+$ docker exec -it ksql-cli ksql http://ksql-server:8088
 ```
+
+## KSQL commands
+
+create stream car_track_stream_3 (route_id string, vehicle_speed double) with (kafka_topic='car_track',value_format='json');
+
+create table avg_speed_3 as select route_id, count(*) as vehicle_count, sum(vehicle_speed)/count(*) as avg_speed from car_track_stream_3 window hopping (size 10 minutes, advance by 1 second) group by route_id;
+
+select * from avg_speed_3;
