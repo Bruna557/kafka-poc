@@ -1,22 +1,32 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://cdn.socket.io/4.3.2/socket.io.min.js"
-            integrity="sha384-KAZ4DtjNhLChOB/hxXuKqhMLYvx3b5MlT55xPEiNmREKRzeEm+RVPlTnAn0ajQNs"
-            crossorigin="anonymous"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='application.js') }}"></script>
+    <head>
+        <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdn.socket.io/4.3.2/socket.io.min.js"
+                integrity="sha384-KAZ4DtjNhLChOB/hxXuKqhMLYvx3b5MlT55xPEiNmREKRzeEm+RVPlTnAn0ajQNs"
+                crossorigin="anonymous"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='application.js') }}"></script>
 
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-</head>
-<body>
-
-<div class="container" id="content">
-    <div class="row">
-        <div id="log">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container" id="content">
+            <h1>Car Track</h1>
+            <div style="border-style: solid; margin-bottom: 10px; padding: 10px;">
+                <h3>Route 1</h3>
+                <h4>Car count: <span id="route_1_count"></span></h4>
+                <h4>Avg speed (km/h): <span id="route_1_speed"></span></h4>
+            </div>
+            <div style="border-style: solid; margin-bottom: 10px; padding: 10px;">
+                <h3>Route 2</h3>
+                <h4>Car count: <span id="route_2_count"></span></h4>
+                <h4>Avg speed (km/h): <span id="route_2_speed"></span></h4>
+            </div>
+            <div style="border-style: solid; margin-bottom: 10px; padding: 10px;">
+                <h3>Route 3</h3>
+                <h4>Car count: <span id="route_3_count"></span></h4>
+                <h4>Avg speed (km/h): <span id="route_3_speed"></span></h4>
+            </div>
         </div>
-    </div>
-</div>
-
-</body>
+    </body>
 </html>

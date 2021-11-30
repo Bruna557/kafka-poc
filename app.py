@@ -3,6 +3,7 @@ from flask import Flask, render_template
 from flask_socketio import SocketIO
 from flask_cors import CORS
 from confluent_kafka import Consumer, KafkaError
+from ksql import KSQLAPI
 from threading import Lock
 import time
 
@@ -15,30 +16,24 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 thread = None
 thread_lock = Lock()
 
-consumer = Consumer({
-    'bootstrap.servers': 'localhost:9091',
-    'group.id': 'counting-group',
-    'enable.auto.commit': True,
-    'session.timeout.ms': 6000,
-    'default.topic.config': {'auto.offset.reset': 'smallest'}
-})
-consumer.subscribe(['car_track'])
+def avg_speed():
+    ksql_client = KSQLAPI('http://localhost:8088')
+    query = ksql_client.query(f'select route_id, avg_speed, vehicle_count from avg_speed_table')
 
-def background_thread():
-    while True:
-        socketio.sleep(3)
-        msg = consumer.poll(0.1)
-        if msg is None:
-            continue
-        elif not msg.error():
-            data = json.loads(msg.value())
-            result = json.dumps({data['route_id']: data['vehicle_speed']})
+    for item in query:
+        print(f'item: {item}')
+        try:
+            res = json.loads(item)
+            result = json.dumps({
+                'route_id': res['row']['columns'][0], 
+                'speed': res['row']['columns'][1], 
+                'count': res['row']['columns'][2]
+            })
             print(result)
-            socketio.emit('car_detected', {'data': result})
-        elif msg.error().code() == KafkaError._PARTITION_EOF:
-            print("End of partition reached")
-        else:
-            print("Error")
+            socketio.emit('avg_speed', {'data': result})
+        except Exception as e:
+            print(e)
+        socketio.sleep(1)
 
 @app.route('/')
 def index():
@@ -51,7 +46,7 @@ def test_connect():
     global thread
     with thread_lock:
         if thread is None:
-            thread = socketio.start_background_task(target=background_thread)
+            thread = socketio.start_background_task(target=avg_speed)
 
 @socketio.on('disconnect')
 def test_disconnect():

@@ -39,8 +39,8 @@ $ docker exec -it ksql-cli ksql http://ksql-server:8088
 
 ## KSQL commands
 
-create stream car_track_stream_3 (route_id string, vehicle_speed double) with (kafka_topic='car_track',value_format='json');
+create stream car_track_stream (route_id string, vehicle_speed double) with (kafka_topic='car_track',value_format='json');
 
-create table avg_speed_3 as select route_id, count(*) as vehicle_count, sum(vehicle_speed)/count(*) as avg_speed from car_track_stream_3 window hopping (size 10 minutes, advance by 1 second) group by route_id;
+create table avg_speed_table as select route_id, count(*) as vehicle_count, sum(vehicle_speed)/count(*) as avg_speed from car_track_stream window hopping (size 1 minute, advance by 10 seconds) group by route_id;
 
-select * from avg_speed_3;
+select * from avg_speed_table;
