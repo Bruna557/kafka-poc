@@ -7,11 +7,15 @@ $(document).ready(function(){
         'dbaac5ca-5bd5-48dc-b665-70c77619d7f0': 'route_3'
     }
 
-    // receive details from server
+    socket.on('car_detected', function(msg) {
+        res = JSON.parse(msg.data)
+        console.log('Route: ' + ROUTES[res.route_id] + ' => count: ' + res.count);
+        document.getElementById(`${ROUTES[res.route_id]}_count`).innerHTML = res.count;
+    });
+
     socket.on('avg_speed', function(msg) {
         res = JSON.parse(msg.data)
-        console.log('Route: ' + ROUTES[res.route_id] + ' => speed: ' + res.speed + ' count: ' + res.count);
-        document.getElementById(`${ROUTES[res.route_id]}_count`).innerHTML = res.count;
-        document.getElementById(`${ROUTES[res.route_id]}_speed`).innerHTML = res.speed;
+        console.log('Route: ' + ROUTES[res.route_id] + ' => speed: ' + res.speed.toFixed(2) );
+        document.getElementById(`${ROUTES[res.route_id]}_speed`).innerHTML = res.speed.toFixed(2);
     });
 });
