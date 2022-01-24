@@ -59,7 +59,9 @@ With KSQL you can join messages from multiple topics to produce a unified result
 
 ### Kafka Streams
 
-Kafka Streams is the Apache Kafka library for writing streaming applications and microservices in Java and Scala.
+Kafka Streams is the Apache Kafka library for writing streaming applications and microservices in Java and Scala. KSQL is an abastraction on top o Kafka Streams.
+
+<img src=".\img\ksql-vs-streams.png" alt="ksql-vs-streams" style="zoom:30%;" />
 
 ## Kafka vs Message Queue
 
@@ -75,14 +77,6 @@ Kafka Streams is the Apache Kafka library for writing streaming applications and
 
 - The key difference is persistence, allowing more than one consumer per topic;
 - Since the history of events is preserved, Kafka can be used for event storming.
-
-## Kafka vs Apache Spark
-
-TODO: compare kafka and spark
-
-### Kafka Streams vs Spark Streams
-
-TODO
 
 ### KSQL vs Spark SQL
 
