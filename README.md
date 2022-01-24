@@ -4,7 +4,7 @@ This is a POC developed to showcase the use of Apache Kafka and KSQL to process 
 
 Consider three Smart Sensors in three different routes. The sensors detect cars and are capable of measuring the speed and publishing an event in a Kafka topic called car_track.
 
-<img src="C:\Users\SchrodeB\Desktop\kafka-poc\docs\img\poc.png" alt="poc" style="zoom: 67%;" />
+<img src="./docs/img/poc.png" alt="poc" style="zoom: 67%;" />
 
 In `scripts/producer.py` you will find a script that simulates those three sensors publishing events with random data.
 
@@ -14,7 +14,7 @@ The application (app.py) consists of:
 
 Both will emit websocket events (using Flask SocketIO) to update a dashboard in real time.
 
-<img src="C:\Users\SchrodeB\Desktop\kafka-poc\docs\img\poc-architecture.png" alt="poc-architecture" style="zoom:60%;" />
+<img src="./docs/img/poc-architecture.png" alt="poc-architecture" style="zoom:60%;" />
 
 ## Running the application
 

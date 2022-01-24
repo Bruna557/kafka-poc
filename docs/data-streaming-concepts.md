@@ -4,7 +4,7 @@
 
 The term "streaming" is used to describe continuous, never-ending data streams with no beginning or end, that provide a constant feed of data that can be utilized/acted upon without needing to be downloaded first.
 
-<img src=".\img\batch-vs-stream.jpg" alt="batch-vs-stream" style="zoom:80%;" />
+<img src="./img/batch-vs-stream.jpg" alt="batch-vs-stream" style="zoom:80%;" />
 
 ## What is Stream Processing
 
@@ -18,7 +18,7 @@ Apache Kafka is an open-source distributed event streaming platform.
 - Scalable: scale production clusters up to a thousand brokers, trillions of messages per day; elastically expand and contract storage and processing.
 - High availability: stretch clusters efficiently over availability zones or connect separate clusters across geographic regions.
 
-<img src=".\img\kafka-broker.png" alt="kafka-broker" style="zoom:30%;" />
+<img src="./img/kafka-broker.png" alt="kafka-broker" style="zoom:30%;" />
 
 ## How does Kafka work?
 
@@ -55,13 +55,13 @@ While in Kafka you store a collection of events in a topic, in ksqlDB you store 
 
 With KSQL you can join messages from multiple topics to produce a unified resultset, and you can also write aggregations.
 
-<img src="C:\Users\SchrodeB\Desktop\kafka-poc\docs\img\ksql-window-aggregation.png" alt="ksql-window-aggregation" style="zoom:25%;" />
+<img src="./img/ksql-window-aggregation.png" alt="ksql-window-aggregation" style="zoom:25%;" />
 
 ### Kafka Streams
 
 Kafka Streams is the Apache Kafka library for writing streaming applications and microservices in Java and Scala. KSQL is an abastraction on top o Kafka Streams.
 
-<img src=".\img\ksql-vs-streams.png" alt="ksql-vs-streams" style="zoom:30%;" />
+<img src="./img/ksql-vs-streams.png" alt="ksql-vs-streams" style="zoom:30%;" />
 
 ## Kafka vs Message Queue
 
